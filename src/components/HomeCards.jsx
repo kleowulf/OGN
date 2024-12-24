@@ -1,34 +1,45 @@
-import { Link } from 'react-router-dom';
-import Card from './Card';
 
-const HomeCards = () => {
+import Card from './Card';
+import faces from '../assets/images/faces.png';
+import { useState } from 'react';
+
+const HomeCards = ({post}) => {
+
+  const [showFullPost, setShowFullPost] = useState(false);
+
+  let summary = post.posts[0].post;
+
+  if (!showFullPost) {
+    summary = summary.substring(0, 90) + '...';
+  }
+
   return (
     <section className='py-4'>
       <div className='container-xl lg:container m-auto'>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 p-4 rounded-lg'>
-          <Card>
-            <h2 className='text-2xl font-bold'>For Developers</h2>
-            <p className='mt-2 mb-4'>
-              Browse our React jobs and start your career today
-            </p>
-            <Link
-              to='/jobs'
-              className='inline-block bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-700'
-            >
-              Browse Jobs
-            </Link>
+          <Card bg='bg-black-100'>
+          <iframe id="player_iframe" src="https://www.buzzsprout.com/2396881?client_source=large_player&iframe=true&referrer=https%3A%2F%2Fwww.buzzsprout.com%2F2396881%2Fpodcast%2Fembed" loading="lazy" width="100%" height="375" frameBorder="0" scrolling="no" title="Operation: Game Night"></iframe>
           </Card>
-          <Card bg='bg-indigo-100'>
-            <h2 className='text-2xl font-bold'>For Employers</h2>
-            <p className='mt-2 mb-4'>
-              List your job to find the perfect developer for the role
-            </p>
-            <Link
-              to='/add-job'
-              className='inline-block bg-indigo-500 text-white rounded-lg px-4 py-2 hover:bg-indigo-600'
-            >
-              Add Job
-            </Link>
+          <Card bg='bg-black-100 '>
+            <div className='text-center' >
+              <img src={faces} />
+              <h1 className='text-3xl font-extrabold text-black sm:text-5xl md:text-6xl'>Jared Clay and Travis</h1>
+            </div>
+          </Card>
+          <Card>
+            <div>
+              <h1>Latest Blog Post</h1>
+              
+                <h1>{post.posts[0].title}</h1>
+                <p>{summary}</p>
+                <button
+          onClick={() => setShowFullPost((prevState) => !prevState)}
+          className='text-indigo-500 mb-5 hover:text-indigo-600'
+        >
+          {showFullPost ? 'Less' : 'More'}
+        </button>
+            
+            </div>
           </Card>
         </div>
       </div>

@@ -1,15 +1,25 @@
 import Hero from '../components/Hero';
 import HomeCards from '../components/HomeCards';
-import JobListings from '../components/JobListings';
-import ViewAllJobs from '../components/ViewAllJobs';
+import NavBar from '../components/Navbar';
+import blog from '../blog.json'
+import GatewayList from '../components/GatewayList';
+
 
 const HomePage = () => {
+  
+  
   return (
+
+    
     <>
+      <NavBar />
       <Hero />
-      <HomeCards />
-      <JobListings isHome={true} />
-      <ViewAllJobs />
+      <HomeCards post={blog} />
+      <GatewayList />
+    
+
+      
+
     </>
   );
 };
